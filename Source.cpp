@@ -316,15 +316,6 @@ public:
 		cout << "SaveAs file - saves the currently open file in file" << endl;
 		cout << "Help - prints this information" << endl;
 		cout << "Exit - exists the program" << endl;
-		// TODO: 
-		// help
-		//The following commands are supported :
-		//open <file> opens <file>
-		//    close closes currently opened file
-		//    save saves the currently open file
-	   //    saveas <file> saves the currently open file in <file>
-	  //      help prints this information
-	  //      exit exists the program
 	}
 private:
 	vector<ValueTypeVector> table;
@@ -367,12 +358,6 @@ int main()
 	{
 		Formula f;
 		Table t(&f);
-		/*t.Open("Out.txt");
-
-		string begin;
-		string rpn_st;
-		t.CalculateAll();
-		t.DisplayTable();*/
 		int num;
 		int row;
 		int col;

@@ -13,20 +13,20 @@
 #include <stdexcept>
 using namespace std;
 
-typedef string ValueType;
+typedef string ValueType;  
 typedef vector<ValueType> ValueTypeVector;
 
-ValueTypeVector& split(const std::string& s, char delim, ValueTypeVector& elems)
+ValueTypeVector& split(const string& s, char delim, ValueTypeVector& elems)   //To split string by char
 {
-	std::stringstream ss(s);
-	std::string item;
-	while (std::getline(ss, item, delim))
+	stringstream ss(s);
+	string item;
+	while (getline(ss, item, delim))
 	{
-		elems.push_back(item);//std::stoi(item));
+		elems.push_back(item);
 	}
 	return elems;
 }
-ValueTypeVector split(const std::string& str, char delim)
+ValueTypeVector split(const string& str, char delim)
 {
 	ValueTypeVector elems;
 	split(str, delim, elems);
@@ -36,9 +36,9 @@ ValueTypeVector split(const std::string& str, char delim)
 class Formula
 {
 public:
-	string calculate(const string origin)
+	string calculate(const string origin)          //to calculate formule by Polish notation
 	{
-		string err = origin.substr(0, 5);
+		string err = origin.substr(0, 5);          //if we have a word return error
 		if (err == "ERROR")
 		{
 			return "ERROR";
@@ -98,9 +98,9 @@ private:
 		else
 			return 0;
 	}
-	string rpn(const string origin)
+	string rpn(const string origin)            //for formules conversion to polish notation
 	{
-		stack<char> operation;
+		stack<char> operation;     //to remember the operations
 		string result;
 		string::const_iterator it;
 
@@ -163,20 +163,20 @@ public:
 			{
 				for (int i = 0; i < row.size() - 1; i++)
 				{
-					if (row[i] == (char)44 && row[i + 1] == (char)44)
+					if (row[i] == (char)44 && row[i + 1] == (char)44)          //to insert space between com
 					{
 						row.insert(i + 1, " ");
 					}
-					if (row[i] == (char)92 && row[i + 1] == (char)92)
+					if (row[i] == (char)92 && row[i + 1] == (char)92)          //to remove double backslash
 					{
 						row.erase(i, 1);
 					}
-					if (row[i] == (char)34 && row[i + 1] == (char)92)
+					if (row[i] == (char)34 && row[i + 1] == (char)92)         //to remove " with backslash
 					{
 						row.erase(i, 2);
 					}
 				}
-				table.push_back(split(row, ','));
+				table.push_back(split(row, ','));       //to insert data to table
 				this->maxLength = GetLongestCellWord();
 				this->isNotEmpty = true;
 			}
@@ -201,7 +201,7 @@ public:
 			cout << endl;
 		}
 	}
-	string GetCell(int r, int c)
+	string GetCell(int r, int c)            //to get data from cell
 	{
 		if (r > table.size() || c > table[r].size())
 		{
@@ -234,7 +234,7 @@ public:
 		}
 		return table[r][c];
 	}
-	string ParseCell(string str)
+	string ParseCell(string str)            //to get data from cell at the right formate
 	{
 		if (str == "+" || str == "-" || str == "/" || str == "*" || str == " ")
 		{
@@ -258,7 +258,7 @@ public:
 		}
 		return "ERROR";
 	}
-	void CalculateAll()
+	void CalculateAll()    //to calculate formules
 	{
 		string temp;
 		for (int i = 0; i < table.size(); i++)
